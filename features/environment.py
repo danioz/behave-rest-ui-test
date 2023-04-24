@@ -4,10 +4,12 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 def before_all(context):
+    print("Executing before all")
     context.test_context = {}
 
 
 def before_tag(context, tag):
+    print("Before tag\n")
     if tag == "ui":
         context.ui_url = 'https://www.saucedemo.com'
         use_fixture(browser_chrome, context, timeout=10)
@@ -34,9 +36,18 @@ def api(context):
         'Content-Type': 'application/json'
     }
 
-
+def before_feature(context, feature):
+     print("Before feature\n")
 
 def before_scenario(context, scenario):
-    pass
+    print("Before scenario\n")
+
 def after_scenario(context, scenario):
-    pass
+    print("scenario status: ")
+    print(scenario.status)
+
+def after_feature(context, feature):
+    print("After Feature\n")
+
+def after_all(context):
+    print("Executing after all")
